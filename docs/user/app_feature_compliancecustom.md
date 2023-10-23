@@ -104,7 +104,7 @@ import re
 BGP_PATTERN = re.compile("\s*neighbor (?P<ip>\d+\.\d+\.\d+\.\d+) .*")
 BGP_SECRET = re.compile("\s*neighbor (?P<ip>\d+\.\d+\.\d+\.\d+) password (\S+).*")
 def custom_compliance_func(obj):
-    if obj.rule == 'bgp' and obj.device.platform.network_driver == 'cisco_ios':
+    if obj.rule.feature.slug == 'bgp' and obj.device.platform.network_driver == 'cisco_ios':
         actual_config = obj.actual
         neighbors = []
         secrets = []
